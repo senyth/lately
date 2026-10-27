@@ -1,5 +1,5 @@
 // import { Analytics } from '@vercel/analytics/react';
-import Footer from './shared/theme/Footer';
+// import Footer from './shared/theme/Footer';
 import Header from './shared/theme/Header';
 import './sass/theme.scss';
 import Dashboard from './components/Dashboard';
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <section id="main">
         <Dashboard />
-        <Footer />
+        {/* <Footer /> */}
       </section>
       {/* <Analytics /> */}
     </div>
