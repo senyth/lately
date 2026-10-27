@@ -1,0 +1,75 @@
+@mixin flex() {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+}
+
+@mixin inline-flex() {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-grow($value) {
+  -webkit-box-flex: $value;
+  -webkit-flex-grow: $value;
+  -ms-flex-positive: $value;
+  flex-grow: $value;
+}
+
+@mixin flex-direction($direction) {
+  @if $direction == row {
+    -webkit-box-orient: horizontal;
+  } @else if $direction == column {
+    -webkit-box-orient: vertical;
+  }
+
+  @if $direction == column-reverse or $direction == row-reverse  {
+    -webkit-box-direction: reverse;
+  } @else {
+    -webkit-box-direction: normal;
+  }
+
+  flex-direction: $direction;
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+}
+
+@mixin align-items($align) {
+  align-items: $align;
+  -webkit-box-align: $align;
+  -webkit-align-items: $align;
+  -ms-flex-align: $align;
+}
+
+@mixin justify-content($justify) {
+  justify-content: $justify;
+  -webkit-box-pack: $justify;
+  -webkit-justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+
+@mixin background-size($size) {
+  background-size: $size;
+  -webkit-background-size: $size;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin flex-order($order) {
+  order: $order;
+  -webkit-box-ordinal-group: $order;
+  -webkit-order: $order;
+  -ms-flex-order: $order;
+}
+
+@mixin flex-basis($value) {
+  flex-basis : $value;
+  -webkit-flex-basis: $value;
+  -ms-flex-preferred-size: $value;
+}
