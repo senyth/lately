@@ -1,8 +1,12 @@
 @use './mixins' as mixin;
 
-#header-wrapper {
+#container {
   width: 100%;
-  // margin: 0 auto;
+  display: flex;
+  flex-direction: column;  
+}
+
+#header-wrapper {
   background-color: #7FB08C;
   color: #ffffff;
 }
@@ -17,47 +21,52 @@
 }
 
 nav {
+  height: 100%;
+  padding-left: 1rem;
+
+  & ul {
+    @include mixin.inline-flex();  
+    @include mixin.flex-direction(row);
+
     height: 100%;
-    padding-left: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
 
-    & ul {
-        @include mixin.inline-flex();  
-        @include mixin.flex-direction(row);
+  & li {
+    height: 100%;
+    margin-left: 1em;
+    margin-right: 1em;
 
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
+    & a {
+      @include mixin.inline-flex();
+      @include mixin.align-items(center);
 
-    & li {
-        height: 100%;
-        margin-left: 1em;
-        margin-right: 1em;
+      color: #FFFFFF;
+      text-decoration: none;
+      height: 100%;
+      height: 100%;
+      position: relative;
+      cursor: pointer;
 
-        & a {
-            @include mixin.inline-flex();
-            @include mixin.align-items(center);
+      // &:not(.active):hover {
+      //     color: $primary-color;
+      // }
 
-            color: #FFFFFF;
-            text-decoration: none;
-            height: 100%;
-            height: 100%;
-            position: relative;
-            cursor: pointer;
+      // &.active:after {
+      //     content: "";
+      //     width: 100%;
+      //     height: 0.3rem;
+      //     position: absolute;
+      //     left: 0;
+      //     bottom: 0;
+      // }
+    }   
+  }
+}
 
-            // &:not(.active):hover {
-            //     color: $primary-color;
-            // }
-
-            // &.active:after {
-            //     content: "";
-            //     width: 100%;
-            //     height: 0.3rem;
-            //     position: absolute;
-            //     left: 0;
-            //     bottom: 0;
-            // }
-        }   
-    }
+#main {
+  width: 1126px;
+  margin: 0 auto;
 }
