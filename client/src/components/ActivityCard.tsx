@@ -1,7 +1,12 @@
 import { Box, Button, Typography } from "@mui/material";
 import type { Activity } from "../types/Activity";
 
-export default function Activity() {
+interface ActivityCardProps {
+  activity: Activity;
+  onAdd?: (id: string) => void;
+}
+
+export default function ActivityCard({ activity }: ActivityCardProps) {
   return (
     <Box
       sx={{
@@ -16,9 +21,12 @@ export default function Activity() {
         justifyContent: 'space-between',
         alignItems: 'center',
       }}
+      id={activity.id}
       >
-      <Typography sx={{ color: 'primary.main' }}>Laundry</Typography>
-      <Typography sx={{ color: 'text.secondary' }}>2 days ago</Typography>
+      <div>
+        <Typography sx={{ color: 'primary.main' }}>{activity.name}</Typography>
+        <Typography sx={{ color: 'text.secondary' }}>{activity.date}</Typography>
+      </div>
       <Button variant="contained">Did it today</Button>
     </Box>
   );
