@@ -6,6 +6,8 @@ export default function Dashboard() {
       <h1>When did I last...?</h1>
       <section>
         <Activity />
+        <Activity />
+        <Activity />
       </section>
     </>
   );

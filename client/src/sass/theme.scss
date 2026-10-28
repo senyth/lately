@@ -23,8 +23,9 @@ nav {
   padding-left: 1rem;
 
   & ul {
-    @include mixin.inline-flex();  
+    @include mixin.flex();  
     @include mixin.flex-direction(row);
+    @include mixin.align-items(center);
 
     height: 100%;
     padding: 0;
@@ -36,11 +37,9 @@ nav {
     height: 100%;
     margin-left: 1em;
     margin-right: 1em;
+    @include mixin.flex();
 
     & a {
-      @include mixin.inline-flex();
-      @include mixin.align-items(center);
-
       color: #FFFFFF;
       text-decoration: none;
       height: 100%;
