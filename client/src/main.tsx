@@ -5,6 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { getTheme } from './shared/theme/theme.ts'
 import type { PaletteMode } from '@mui/material/styles'
 import { createRoot } from 'react-dom/client'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export function Root() {
   const [mode, setMode] = useState<PaletteMode>('light');
@@ -12,10 +14,12 @@ export function Root() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App 
-        mode={mode}
-        onToggleMode={() => setMode(m => (m === 'light' ? 'dark' : 'light'))}
-      />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <App 
+          mode={mode}
+          onToggleMode={() => setMode(m => (m === 'light' ? 'dark' : 'light'))}
+        />
+      </LocalizationProvider>
     </ThemeProvider>
   );
 }

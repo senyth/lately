@@ -12,7 +12,7 @@ const sage = {
     muted: '#6B756D',
     accent: '#4F7A5C',
     accentContrast: '#FFFFFF',
-    secondary: '#C8643C',
+    secondary: '#7FB08C',
     secondaryContrast: '#FFFFFF',
     border: '#E1E5DD',
     // recency: { recent: '#5E8C6A', due: '#C99A3E', overdue: '#B5543C' },
@@ -24,7 +24,7 @@ const sage = {
     muted: '#8F9A91',
     accent: '#7FB08C',
     accentContrast: '#121613',
-    secondary: '#E58A5F',
+    secondary: '#4F7A5C',
     secondaryContrast: '#121613',
     border: '#2A322C',
     // recency: { recent: '#7FB08C', due: '#E0B45F', overdue: '#E07A62' },
@@ -62,9 +62,6 @@ export const getTheme = (mode: PaletteMode) => {
           body: { backgroundColor: t.background, color: t.text },
           'h1, h2, h3, h4, h5, h6': headingStyle,
         },
-      },
-      MuiButton: {
-        defaultProps: { disableElevation: true },
       },
       MuiPaper: {
         defaultProps: { elevation: 0 },

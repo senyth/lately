@@ -10,7 +10,7 @@ export default function Dashboard() {
     },
     {
       id: '2',
-      name: 'Bought bathroom tissue',
+      name: 'Buy bathroom tissue',
       date: '2026-10-11'
     }
   ];
