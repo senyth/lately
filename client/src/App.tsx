@@ -4,6 +4,8 @@ import Header from './shared/theme/Header';
 import './sass/theme.scss';
 import Dashboard from './components/Dashboard';
 import type { PaletteMode } from '@mui/material';
+import { useState } from 'react';
+import { LogInPage } from './components/LogInPage';
 
 interface AppProps {
   mode: PaletteMode;
@@ -11,6 +13,11 @@ interface AppProps {
 }
 
 function App({ mode, onToggleMode }: AppProps) {
+  const [isLoggedIn, setIsLoggedIn] = useState<true | false>(false);
+
+  if (!isLoggedIn) {
+    return <LogInPage />;
+  }
 
   return (
     <div id="container">
@@ -21,7 +28,7 @@ function App({ mode, onToggleMode }: AppProps) {
       </section>
       {/* <Analytics /> */}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

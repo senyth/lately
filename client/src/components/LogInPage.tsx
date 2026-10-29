@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-export function LogIn() {
+export function LogInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

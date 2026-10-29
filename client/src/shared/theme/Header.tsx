@@ -1,4 +1,19 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputLabel, MenuItem, Select, TextField, Typography, type PaletteMode } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  type PaletteMode,
+} from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import '../../sass/theme.scss';
 import { DarkMode, LightMode } from '@mui/icons-material';
@@ -13,36 +28,43 @@ interface HeaderProps {
 export default function Header({ mode, onToggleMode }: HeaderProps) {
   const [open, setOpen] = useState<true | false>(false);
   const [date, setDate] = useState<Dayjs | null>(dayjs());
-  
+
   const handleClick = () => {
     setOpen(true);
-  }
-  
+  };
+
   const handleClose = () => {
     setOpen(false);
-  }
-  
+  };
+
   const handleSubmit = () => {
     setOpen(false);
-  }
-  
+  };
+
   return (
-    <Box component="header" sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}>
+    <Box
+      component="header"
+      sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}
+    >
       <div id="header-content">
-        <Typography sx={{ color: 'primary.contrastText' }}><h1>Lately</h1></Typography>
+        <Typography sx={{ color: 'primary.contrastText' }}>
+          <h1>Lately</h1>
+        </Typography>
         <nav>
           <ul>
-            <Button variant="contained" color="secondary" onClick={handleClick}>Add</Button>
+            <Button variant="contained" color="secondary" onClick={handleClick}>
+              Add
+            </Button>
             <li>Activities</li>
             <li>Categories</li>
             <li>Logout</li>
             <li>
               <IconButton onClick={onToggleMode}>
-                {
-                  mode === 'light' ? 
-                    <DarkMode sx={{ color: 'primary.contrastText' }} /> :
-                    <LightMode sx={{ color: 'primary.contrastText' }} />
-                }
+                {mode === 'light' ? (
+                  <DarkMode sx={{ color: 'primary.contrastText' }} />
+                ) : (
+                  <LightMode sx={{ color: 'primary.contrastText' }} />
+                )}
               </IconButton>
             </li>
           </ul>
@@ -63,8 +85,14 @@ export default function Header({ mode, onToggleMode }: HeaderProps) {
               fullWidth
               variant="outlined"
             />
-            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }} fullWidth>
-              <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
+            <FormControl
+              variant="outlined"
+              sx={{ m: 1, minWidth: 120 }}
+              fullWidth
+            >
+              <InputLabel id="demo-simple-select-standard-label">
+                Category
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
