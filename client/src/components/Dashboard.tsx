@@ -16,7 +16,7 @@ export default function Dashboard() {
   ];
   return (
     <>
-      <h1>When did I last...?</h1>
+      <h2>When did I last...?</h2>
       <section>
         {
           activities.map(activity => (
