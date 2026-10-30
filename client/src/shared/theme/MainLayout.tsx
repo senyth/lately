@@ -1,15 +1,18 @@
-import Dashboard from '../../components/Dashboard';
+import { Box } from '@mui/material';
+import Footer from './Footer';
 import Header from './Header';
+import type { ReactNode } from 'react';
 
-export default function MainLayout() {
+export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div id="container">
+    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <section id="main">
-        <Dashboard />
-        {/* <Footer /> */}
-      </section>
-      {/* <Analytics /> */}
-    </div>
+
+      <Box component="main" sx={{ flex: 1, p: 3 }}>
+        <section id="main">{children}</section>
+      </Box>
+
+      <Footer />
+    </Box>
   );
 }
