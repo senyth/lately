@@ -43,7 +43,7 @@ export default function Header() {
       component="header"
       sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}
     >
-      <div id="header-content">
+      <div className="layout-content">
         <Typography sx={{ color: 'primary.contrastText' }}>
           <h1>Lately</h1>
         </Typography>
