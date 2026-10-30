@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react';
+import { StrictMode, useCallback, useMemo, useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getTheme } from './shared/theme/theme.ts';
@@ -13,16 +13,19 @@ import { ThemeModeContext } from './shared/theme/ThemeModeContext.tsx';
 export function Root() {
   const [mode, setMode] = useState<PaletteMode>('light');
 
-  const toggleMode = () => {
-    setMode((mode) => (mode === 'light' ? 'dark' : 'light'));
-  };
+  const toggleMode = useCallback(
+    () => setMode((mode) => (mode === 'light' ? 'dark' : 'light')),
+    []
+  );
 
-  const theme = getTheme(mode);
+  const theme = useMemo(() => getTheme(mode), [mode]);
+  const value = useMemo(() => ({ mode, toggleMode }), [mode, toggleMode]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <ThemeModeContext.Provider value={{ mode, toggleMode }}>
+        <ThemeModeContext.Provider value={value}>
           <RouterProvider router={router} />
         </ThemeModeContext.Provider>
       </LocalizationProvider>
