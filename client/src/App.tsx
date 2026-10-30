@@ -5,7 +5,7 @@ import './sass/theme.scss';
 import Dashboard from './components/Dashboard';
 import type { PaletteMode } from '@mui/material';
 import { useState } from 'react';
-import { LogInPage } from './components/LogInPage';
+import { LogInPage } from './pages/LogInPage';
 
 interface AppProps {
   mode: PaletteMode;
