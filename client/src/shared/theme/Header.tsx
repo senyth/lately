@@ -12,20 +12,17 @@ import {
   Select,
   TextField,
   Typography,
-  type PaletteMode,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import '../../sass/theme.scss';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import { useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
+import { useThemeMode } from './ThemeModeContext';
 
-interface HeaderProps {
-  mode: PaletteMode;
-  onToggleMode: () => void;
-}
+export default function Header() {
+  const { mode, toggleMode } = useThemeMode();
 
-export default function Header({ mode, onToggleMode }: HeaderProps) {
   const [open, setOpen] = useState<true | false>(false);
   const [date, setDate] = useState<Dayjs | null>(dayjs());
 
@@ -59,7 +56,7 @@ export default function Header({ mode, onToggleMode }: HeaderProps) {
             <li>Categories</li>
             <li>Logout</li>
             <li>
-              <IconButton onClick={onToggleMode}>
+              <IconButton onClick={toggleMode}>
                 {mode === 'light' ? (
                   <DarkMode sx={{ color: 'primary.contrastText' }} />
                 ) : (
