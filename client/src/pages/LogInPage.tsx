@@ -69,7 +69,8 @@ export function LogInPage() {
 
           <Box>
             <Typography sx={{ color: 'text.secondary' }}>
-              Don't have an account? <Link href="">Register here</Link>.
+              Don't have an account? <Link href="/register">Register here</Link>
+              .
             </Typography>
           </Box>
         </Stack>
