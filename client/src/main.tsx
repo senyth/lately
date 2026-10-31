@@ -7,6 +7,8 @@ import { createRoot } from 'react-dom/client';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { router } from './routes/index.tsx';
 import { ThemeModeContext } from './shared/theme/ThemeModeContext.tsx';
 import {
@@ -15,6 +17,12 @@ import {
   getSystemMode,
   saveMode,
 } from './shared/theme/themeMode.ts';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 1 },
+  },
+});
 
 export function Root() {
   const [mode, setMode] = useState<PaletteMode>(getInitialMode);
@@ -38,14 +46,17 @@ export function Root() {
   const value = useMemo(() => ({ mode, toggleMode }), [mode, toggleMode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <ThemeModeContext.Provider value={value}>
-          <RouterProvider router={router} />
-        </ThemeModeContext.Provider>
-      </LocalizationProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <ThemeModeContext.Provider value={value}>
+            <RouterProvider router={router} />
+          </ThemeModeContext.Provider>
+        </LocalizationProvider>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
