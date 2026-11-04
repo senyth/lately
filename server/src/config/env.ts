@@ -2,7 +2,7 @@ import "dotenv/config";
 import { z } from "zod";
 
 const schema = z.object({
-  PORT: z.coerce.number().default(5000),
+  PORT: z.coerce.number().default(5001),
   MONGODB_USERNAME: z.string().min(1),
   MONGODB_PASSWORD: z.string().min(1),
   MONGODB_HOST: z.string().min(1),
