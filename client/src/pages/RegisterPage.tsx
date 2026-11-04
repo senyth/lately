@@ -7,13 +7,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useRegister } from '../hooks/useRegister';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const register = useRegister();
+
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    register.mutate({ name, email, password });
+  };
 
   return (
     <Box
@@ -29,7 +36,7 @@ export default function RegisterPage() {
         component="main"
         sx={{ width: '100%', maxWidth: 420, p: { xs: 3, sm: 4 } }}
       >
-        <Stack spacing={3} component="form" noValidate>
+        <Stack spacing={3} component="form" noValidate onSubmit={handleSubmit}>
           <Box>
             <Typography variant="h4" component="h1">
               Create your account
@@ -70,8 +77,18 @@ export default function RegisterPage() {
             fullWidth
           />
 
-          <Button type="submit" variant="contained" size="large">
-            Create account
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            disabled={
+              !name.trim() ||
+              !email.trim() ||
+              password.length < 8 ||
+              register.isPending
+            }
+          >
+            {register.isPending ? 'Creating account...' : 'Create account'}
           </Button>
 
           <Typography
