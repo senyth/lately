@@ -9,6 +9,31 @@ import {
   Typography,
 } from '@mui/material';
 import { useCategories } from '../hooks/useCategories';
+import AddCategoryButton from '../components/AddCategoryButton';
+import type { Category } from '../types/Category';
+
+function displayList(categories: Category[]) {
+  if (categories.length === 0) {
+    return (
+      <Typography sx={{ color: 'text.secondary', py: 3 }}>
+        No categories yet.
+      </Typography>
+    );
+  }
+
+  return (
+    <>
+      <h3>{categories.length} categories</h3>
+      <List disablePadding>
+        {categories.map((category: Category) => (
+          <ListItem key={category._id} divider>
+            <ListItemText primary={category.name} />
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+}
 
 export default function CategoryList() {
   const { data: categories, isPending, isError, refetch } = useCategories();
@@ -36,21 +61,19 @@ export default function CategoryList() {
     );
   }
 
-  if (categories.length === 0) {
-    return (
-      <Typography sx={{ color: 'text.secondary', py: 3 }}>
-        No categories yet.
-      </Typography>
-    );
-  }
-
   return (
-    <List disablePadding>
-      {categories.map((category) => (
-        <ListItem key={category._id} divider>
-          <ListItemText primary={category.name} />
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <h2>List of Categories</h2>
+        <AddCategoryButton />
+      </Box>
+      {displayList(categories)}
+    </>
   );
 }
