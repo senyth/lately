@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { env } from "./config/env";
 import { errorHandler } from "./middleware/errorHandler";
 import authRouter from "./routes/auth.routes";
+import categoryRouter from "./routes/category.routes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/categories", categoryRouter);
 
 app.use(errorHandler);
 
