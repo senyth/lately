@@ -7,16 +7,17 @@ import {
   DialogTitle,
   FormControl,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Link as RouterLink } from 'react-router-dom';
 import '../../sass/theme.scss';
 import { useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
-
 import LogoutButton from './LogoutButton';
 import ToggleThemeButton from './ToggleThemeButton';
 
@@ -50,8 +51,22 @@ export default function Header() {
             <Button variant="contained" color="secondary" onClick={handleClick}>
               Add
             </Button>
-            <li>Activities</li>
-            <li>Categories</li>
+            <li>
+              <Link
+                component={RouterLink}
+                to="activities"
+                sx={{ color: 'primary.contrastText' }}
+              >
+                Activities
+              </Link>
+            </li>
+            <Link
+              component={RouterLink}
+              to="categories"
+              sx={{ color: 'primary.contrastText' }}
+            >
+              Categories
+            </Link>
             <li>
               <LogoutButton />
             </li>
