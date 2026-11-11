@@ -13,6 +13,10 @@ const createActivitySchema = z.object({
   categoryId: z.string().refine(isValidObjectId, "Invalid category"),
 });
 
+const listActivitiesQuerySchema = z.object({
+  categoryId: z.string().refine(isValidObjectId, "Invalid category").optional(),
+});
+
 const toPublicActivity = (a: ActivityLean) => ({
   _id: String(a._id),
   categoryId: String(a.categoryId),
@@ -51,4 +55,17 @@ export async function createActivity(req: Request, res: Response) {
     }
     throw err;
   }
+}
+
+export async function listActivities(req: Request, res: Response) {
+  const { categoryId } = listActivitiesQuerySchema.parse(req.query);
+
+  const activities = await Activity.find({
+    userId: req.userId,
+    ...(categoryId && { categoryId }),
+  })
+    .sort({ name: 1 })
+    .lean<ActivityLean[]>();
+
+  res.json(activities.map(toPublicActivity));
 }
