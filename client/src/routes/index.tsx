@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import { LogInPage } from '../pages/LogInPage';
 import RegisterPage from '../pages/RegisterPage';
 import ProtectedLayout from './ProtectedLayout';
-import ActivitiesPage from '../pages/ActivitiesPage';
 import CategoryList from '../pages/CategoryList';
+import ActivityList from '../pages/ActivityList';
 
 export const router = createBrowserRouter([
   { path: '/login', element: <LogInPage /> },
@@ -11,8 +11,8 @@ export const router = createBrowserRouter([
   {
     element: <ProtectedLayout />,
     children: [
-      { path: '/', element: <ActivitiesPage /> },
-      { path: '/activities', element: <ActivitiesPage /> },
+      { path: '/', element: <ActivityList /> },
+      { path: '/activities', element: <ActivityList /> },
       { path: '/categories', element: <CategoryList /> },
     ],
   },
