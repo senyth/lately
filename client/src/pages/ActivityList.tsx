@@ -55,5 +55,19 @@ export default function ActivityList() {
     );
   }
 
-  displayList(activities);
+  return (
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <h2>When did I last...?</h2>
+        {/* <AddCategoryButton /> */}
+      </Box>
+      {displayList(activities)}
+    </>
+  );
 }
