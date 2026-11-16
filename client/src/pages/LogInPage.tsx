@@ -2,6 +2,8 @@ import {
   Alert,
   Box,
   Button,
+  IconButton,
+  InputAdornment,
   Link,
   Paper,
   Stack,
@@ -10,10 +12,12 @@ import {
 } from '@mui/material';
 import { useState, type SubmitEvent } from 'react';
 import { useLogin } from '../hooks/useLogin';
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 
 export function LogInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const login = useLogin();
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
@@ -67,12 +71,30 @@ export function LogInPage() {
 
           <TextField
             label="Password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             fullWidth
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword((show) => !show)}
+                      onMouseDown={(e) => e.preventDefault()}
+                      aria-label={
+                        showPassword ? 'Hide password' : 'Show password'
+                      }
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
 
           <Button
