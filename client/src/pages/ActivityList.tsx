@@ -8,6 +8,7 @@ import {
   CircularProgress,
   Typography,
 } from '@mui/material';
+import AddActivityButton from '../components/AddActivityButton';
 
 function displayList(activities: Activity[]) {
   if (activities.length === 0) {
@@ -20,7 +21,7 @@ function displayList(activities: Activity[]) {
 
   return (
     <>
-      <h2>When did I last...?</h2>
+      <h3>When did I last...?</h3>
       <section>
         {activities.map((activity: Activity) => (
           <ActivityCard activity={activity} />
@@ -64,8 +65,8 @@ export default function ActivityList() {
           alignItems: 'center',
         }}
       >
-        <h2>When did I last...?</h2>
-        {/* <AddCategoryButton /> */}
+        <h2>List of Activities</h2>
+        <AddActivityButton />
       </Box>
       {displayList(activities)}
     </>
